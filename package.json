@@ -1,0 +1,36 @@
+{
+  "name": "elm-css-modules-loader",
+  "version": "0.1.6",
+  "description": "webpack loader for referencing CSS module classes in Elm code",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentience/elm-css-modules-loader.git"
+  },
+  "keywords": [
+    "webpack",
+    "loader",
+    "elm",
+    "css"
+  ],
+  "author": "Kevin Yank <thatguy@kevinyank.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/sentience/elm-css-modules-loader/issues"
+  },
+  "homepage": "https://github.com/sentience/elm-css-modules-loader",
+  "peerDependencies": {
+    "babel-core": "^6.18.2"
+  },
+  "devDependencies": {
+    "elm": "^0.18.0",
+    "elm-webpack-loader": "^3.0.6",
+    "webpack": "^1.15.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  }
+}
