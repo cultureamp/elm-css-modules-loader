@@ -21,7 +21,7 @@
   "homepage": "https://github.com/cultureamp/elm-css-modules-loader",
   "peerDependencies": {
     "babel-core": "^6.18.2",
-    "webpack": ">=1.15.0 <2.0"
+    "webpack": ">=1.14.0 <2.0"
   },
   "files": [
     "index.js"
