@@ -129,7 +129,7 @@ This will be compiled to JavaScript by elm-webpack-loader:
 
 ```js
 var _user$project$Styles$classes = A2(
-  _user$project$CssModules$CssModule,
+  _cultureamp$elm_css_modules_loader$CssModules$CssModule,
   './stylesheet.css',
   {something: '', anotherThing: ''});
 ```
@@ -138,7 +138,7 @@ elm-css-modules-loader turns this into:
 
 ```js
 var _user$project$Styles$classes = A2(
-  _user$project$CssModules$CssModule,
+  _cultureamp$elm_css_modules_loader$CssModules$CssModule,
   './stylesheet.css',
   require('./stylesheet.css'));
 ```
@@ -148,7 +148,7 @@ resulting in:
 
 ```js
 var _user$project$Styles$classes = A2(
-  _user$project$CssModules$CssModule,
+  _cultureamp$elm_css_modules_loader$CssModules$CssModule,
   './stylesheet.css',
   __webpack_require__(42));
 ```
