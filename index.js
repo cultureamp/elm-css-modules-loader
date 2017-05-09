@@ -7,11 +7,10 @@ const loader = function(source, inputSourceMap) {
 
   const config = loaderUtils.getOptions(this) || {};
 
-  // TODO get config from Webpack (hard-coded for now)
-  config.module = 'CssModules';
-  config.tagger = 'CssModule';
+  config.module = config['module'] || 'CssModules';
+  config.tagger = config['tagger'] || 'CssModule';
 
-  const packageName = 'user/project';
+  const packageName = config['package'] || 'cultureamp/elm-css-modules-loader';
   const taggerName =
     '_' +
     [

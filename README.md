@@ -82,13 +82,30 @@ module.exports = {
     loaders: [
       {
         test: /\.elm$/,
-        loaders: ['elm-css-modules-loader', 'elm-webpack'],
+        loaders: [
+          'elm-css-modules-loader',
+          'elm-webpack',
+        ],
       },
       ⋮
     ],
   },
 };
 ```
+
+Note the following configuration options are available for the loader. If you’re
+using the original version of this package, the defaults should work fine.
+
+`package` – (default: `cultureamp/elm-css-modules-loader`) The Elm package in
+which the `CssModule` type is defined. If you forked the Elm package for your
+own development, you’ll need to specify the full package name that you have
+released it under with this option.
+
+`module` – (default: `CssModules`) The name of the Elm module in which the
+`CssModule` type is defined.
+
+`tagger` – (defaut: `CssModule`) The name of the Elm constructor function that
+is used to declare CssModules in your code.
 
 ### Elm Package
 
@@ -143,7 +160,7 @@ The module loaded by `__webpack_require__(42)` will look like:
 function(module, exports) {
   module.exports = {
     something: 'something-abc123',
-    anotherThing: 'anotherThing-abc123' 
+    anotherThing: 'anotherThing-abc123'
   };
 }
 ```

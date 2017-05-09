@@ -11,7 +11,7 @@ module.exports = {
     loaders: [
       {
         test: /\.elm$/,
-        loaders: ['elm-css-modules-loader', 'elm-webpack'],
+        loaders: ['elm-css-modules-loader?package=user/project', 'elm-webpack'],
       },
       {
         test: /\.css$/,
