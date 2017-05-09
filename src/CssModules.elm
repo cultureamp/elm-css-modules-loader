@@ -8,7 +8,7 @@ Webpack at build time.
 @docs CssModule
 
 # Using Module Classes
-@docs class, classList
+@docs class, classList, toString
 
 -}
 
@@ -78,3 +78,17 @@ classList : List ( classes -> String, Bool ) -> CssModule classes -> Html.Attrib
 classList list (CssModule _ classes) =
     Html.Attributes.classList <|
         List.map (Tuple.mapFirst (\accessor -> accessor classes)) list
+
+
+{-| Access the raw `String` for a CSS module class.
+
+    let
+        classes = CssModule "./styles.css"
+            { someClass = "" }
+    in
+        toString .someClass classes
+
+-}
+toString : (classes -> String) -> CssModule classes -> String
+toString accessor (CssModule _ classes) =
+    accessor classes
