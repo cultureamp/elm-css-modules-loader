@@ -9,7 +9,7 @@ const loader = function(source, inputSourceMap) {
 
   // TODO get config from Webpack (hard-coded for now)
   config.module = 'CssModules';
-  config.tagger = 'Class';
+  config.tagger = 'CssModule';
 
   const packageName = 'user/project';
   const taggerName =
@@ -86,20 +86,15 @@ function callExpressionVisitor(t, loaderContext, options) {
     )
       return;
 
-    const className = path.node.arguments[1];
-    const cssModulePath = path.node.arguments[2];
-
-    // TODO: Error on or handle non string literals
-
-    const replacement = t.callExpression(path.node.callee, [
-      path.node.arguments[0],
-      t.memberExpression(
-        t.callExpression(t.Identifier('require'), [path.node.arguments[2]]),
-        path.node.arguments[1],
-        true
-      ),
-      path.node.arguments[2],
-    ]);
+    // replace hard-coded CSS classes with require("stylesheet.css")
+    const replacement = t.callExpression(
+      path.node.callee, // A2 (leave alone)
+      [
+        path.node.arguments[0], // taggerName (leave alone)
+        path.node.arguments[1], // e.g. "stylesheet.css" (leave alone)
+        t.callExpression(t.Identifier('require'), [path.node.arguments[1]]),
+      ]
+    );
     replacement[REPLACED_NODE] = true;
 
     path.replaceWith(replacement);

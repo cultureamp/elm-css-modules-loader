@@ -1,9 +1,10 @@
 module Nested.Nested exposing (view)
 
-import Html exposing (div, text)
+import Html exposing (Html, div, text)
 import CssModules exposing (class)
-import Nested.Styles as Styles
+import Nested.Styles exposing (classes)
 
 
+view : Html msg
 view =
-    div [ class Styles.nested ] [ text "This is a nested div" ]
+    div [ class classes .nested ] [ text "This is a nested div" ]

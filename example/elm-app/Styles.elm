@@ -1,13 +1,11 @@
 module Styles exposing (..)
 
-import CssModules exposing (Class)
+import CssModules exposing (CssModule(..))
 
 
-something : Class
-something =
-    Class "something" "./Main.css"
-
-
-anotherThing : Class
-anotherThing =
-    Class "anotherThing" "./Main.css"
+styles =
+    CssModule "./Main.css"
+        { something = ""
+        , somethingElse = ""
+        , nonexistent = ""
+        }

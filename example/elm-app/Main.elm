@@ -3,33 +3,22 @@ module Main exposing (..)
 import Html exposing (Html, div, text)
 import CssModules exposing (class)
 import Nested.Nested as Nested
-import Styles
+import Styles exposing (styles)
 
 
-view : Model -> Html Msg
-view _ =
+view : () -> Html ()
+view () =
     div
-        [ class Styles.something ]
+        [ class styles .nonexistent ]
         [ text "this is a div"
         , Nested.view
         ]
 
 
+main : Program Never () ()
 main =
     Html.beginnerProgram
-        { model = 0
+        { model = ()
+        , update = \() () -> ()
         , view = view
-        , update = update
         }
-
-
-type Msg
-    = Noop
-
-
-type alias Model =
-    Int
-
-
-update _ _ =
-    0

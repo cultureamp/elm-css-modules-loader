@@ -1,35 +1,30 @@
-module CssModules exposing (Class, class, classList)
+module CssModules exposing (..)
 
 import Html
 import Html.Attributes
 
 
-type alias Class =
-    { className : String
-    , modulePath : String
-    }
+type CssModule classes
+    = CssModule String classes
 
 
 {-| Use a tagged CSS class as an HTML class attribute’s value.
 
-    Html.div [ class <| Class "className" "styles.css" ]
+    Html.div [ class (CssModule "styles.css" {someClass = ""}) .someClass  ]
 -}
-class : Class -> Html.Attribute msg
-class { className } =
-    Html.Attributes.class className
+class : CssModule classes -> (classes -> String) -> Html.Attribute msg
+class (CssModule _ classes) accessor =
+    Html.Attributes.class (accessor classes)
 
 
 {-| Combine a list of tagged CSS classes as an HTML class attribute’s value.
 
-    Html.div [ classList
-        [ (Class "someClass" "styles.css", True) -- or False to skip
-        , (Class "anotherClass "styles.css", True)
-        ]
+   Html.div [ classList (CssModule "styles.css" {someClass = "", otherClass = ""})
+       [ (.someClass, True) -- or False to skip
+       , (.anotherClass, True)
+       ]
 -}
-classList : List ( Class, Bool ) -> Html.Attribute msg
-classList list =
-    let
-        unwrap ( { className }, bool ) =
-            ( className, bool )
-    in
-        Html.Attributes.classList <| List.map unwrap list
+classList : CssModule classes -> List ( classes -> String, Bool ) -> Html.Attribute msg
+classList (CssModule _ classes) list =
+    List.map (Tuple.mapFirst (\accessor -> (accessor classes))) list
+        |> Html.Attributes.classList
