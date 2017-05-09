@@ -27,7 +27,7 @@ module Styles exposing (..)
 import CssModules exposing (CssModule(..))
 
 
-styles =
+classes =
     CssModule "./stylesheet.css" -- relative to main Elm source directory
         { something = "" -- strings will be populated by Webpack at build time!
         , anotherThing = ""
@@ -40,13 +40,13 @@ Then use the included `class` function to use the class names in your view:
 module Main exposing (..)
 
 import CssModules exposing (class)
-import Styles exposing (styles)
+import Styles exposing (classes)
 
 
 view : Html Msg
 view =
     div
-        [ class styles .something ]
+        [ class .something classes ]
         [ text "this is a div"]
 ```
 
