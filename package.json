@@ -21,13 +21,13 @@
   "homepage": "https://github.com/cultureamp/elm-css-modules-loader",
   "peerDependencies": {
     "babel-core": "^6.18.2",
-    "babel-generator": "^6.18.2",
     "webpack": "^1.15.0"
   },
   "files": [
     "index.js"
   ],
   "dependencies": {
+    "babel-generator": "^6.18.2",
     "loader-utils": "^1.1.0"
   }
 }
