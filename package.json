@@ -1,6 +1,6 @@
 {
   "name": "elm-css-modules-loader",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "webpack loader for using CSS modules in Elm code",
   "main": "index.js",
   "repository": {
