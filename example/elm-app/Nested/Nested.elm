@@ -7,4 +7,4 @@ import Nested.Styles exposing (classes)
 
 view : Html msg
 view =
-    div [ class classes .nested ] [ text "This is a nested div" ]
+    div [ class .nested classes ] [ text "This is a nested div" ]

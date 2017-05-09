@@ -3,6 +3,9 @@
 A [Webpack][webpack] loader that enables you to reference CSS modules in Elm
 source files.
 
+Hat tip to NoRedInk and its [elm-assets-loader][elm-assets-loader], which
+formed the technical basis for this package.
+
 ## Overview
 
 Start with a CSS file that can be imported by Webpack using
@@ -89,9 +92,61 @@ module.exports = {
 
 ### Elm Package
 
-Install the `CultureAmp/CssModules` package in your Elm project, then use the
-features provided: the `CssModule` constructor (for referencing CSS modules),
-and the `class` and `classList` HTML attribute functions.
+Install the `cultureamp/elm-css-modules-loader` package in your Elm project,
+then use the features provided: the `CssModule` constructor (for referencing
+CSS modules), and the `class` and `classList` HTML attribute functions.
+
+## Under the hood
+
+Let’s walk through what happens when this Elm code is processed by Webpack:
+
+```elm
+classes =
+    CssModule "./stylesheet.css"
+        { something = ""
+        , anotherThing = ""
+        }
+```
+
+This will be compiled to JavaScript by elm-webpack-loader:
+
+```js
+var _user$project$Styles$classes = A2(
+  _user$project$CssModules$CssModule,
+  './stylesheet.css',
+  {something: '', anotherThing: ''});
+```
+
+elm-css-modules-loader turns this into:
+
+```js
+var _user$project$Styles$classes = A2(
+  _user$project$CssModules$CssModule,
+  './stylesheet.css',
+  require('./stylesheet.css'));
+```
+
+webpack parses this `require` call, determines it to be a css-loader module,
+resulting in:
+
+```js
+var _user$project$Styles$classes = A2(
+  _user$project$CssModules$CssModule,
+  './stylesheet.css',
+  __webpack_require__(42));
+```
+
+The module loaded by `__webpack_require__(42)` will look like:
+
+```js
+42:
+function(module, exports) {
+  module.exports = {
+    something: 'something-abc123',
+    anotherThing: 'anotherThing-abc123' 
+  };
+}
+```
 
 ## Known Limitations
 
@@ -108,6 +163,7 @@ You cannot reference class names that are not valid Elm record keys.
 [css-loader]: https://www.npmjs.com/package/css-loader
 [css-modules]: https://github.com/css-modules/css-modules
 [elm]: http://elm-lang.org
+[elm-assets-loader]: https://github.com/NoRedInk/elm-assets-loader
 [elm-css]: https://github.com/rtfeldman/elm-css
 [elm-webpack-loader]: https://www.npmjs.com/package/elm-webpack-loader
 [react]: https://facebook.github.io/react/

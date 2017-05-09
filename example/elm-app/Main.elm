@@ -3,13 +3,13 @@ module Main exposing (..)
 import Html exposing (Html, div, text)
 import CssModules exposing (class)
 import Nested.Nested as Nested
-import Styles exposing (styles)
+import Styles exposing (classes)
 
 
 view : () -> Html ()
 view () =
     div
-        [ class styles .nonexistent ]
+        [ class .something classes ]
         [ text "this is a div"
         , Nested.view
         ]
