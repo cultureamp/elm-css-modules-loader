@@ -107,6 +107,9 @@ released it under with this option.
 `tagger` – (defaut: `CssModule`) The name of the Elm constructor function that
 is used to declare CssModules in your code.
 
+**Note:** Don't set noParse on .elm files. Otherwise, `require`s won't
+be processed.
+
 ### Elm Package
 
 Install the `cultureamp/elm-css-modules-loader` package in your Elm project,
