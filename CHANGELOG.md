@@ -24,10 +24,6 @@
 
 👍 Allow Webpack 1.14.x.
 
-### 1.0.2
-
-👍 Allow Webpack 1.14.x.
-
 ### 1.0.1
 
 👍 Loosen Webpack version requirements (now >= 1.15.0, < 2.0.0).
