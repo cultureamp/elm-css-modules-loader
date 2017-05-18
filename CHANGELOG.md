@@ -31,6 +31,7 @@
 ### 1.0.1
 
 👍 Loosen Webpack version requirements (now >= 1.15.0, < 2.0.0).
+
 🐛 Make babel-generator a full dependency; don’t require host project to have it.
 
 ### 1.0.0
