@@ -3,7 +3,7 @@ const babel = require('babel-core');
 const { default: generate } = require('babel-generator');
 
 const loader = function(source, inputSourceMap) {
-  this.cacheable && this.cacheable();
+  this.cacheable && this.cacheable(); // for Webpack 1.x compatibility
 
   const config = loaderUtils.getOptions(this) || {};
 

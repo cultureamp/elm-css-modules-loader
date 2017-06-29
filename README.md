@@ -75,6 +75,32 @@ and Elm package.
 Add the `elm-css-modules-loader` NPM package to your project, then configure
 Webpack to chain it with [elm-webpack-loader][elm-webpack-loader]:
 
+#### Webpack 2+
+
+```javascript
+module.exports = {
+  ⋮
+  module: {
+    rules: [
+      {
+        test: /\.elm$/,
+        use: [
+          {
+            loader: 'elm-css-modules-loader',
+          },
+          {
+            loader: 'elm-webpack',
+          }
+        ],
+      },
+      ⋮
+    ],
+  },
+};
+```
+
+#### Webpack 1.x
+
 ```javascript
 module.exports = {
   ⋮
@@ -174,11 +200,6 @@ Currently this only works with Webpack 1.x. Webpack 2 support is at the top the
 our to-do list.
 
 You cannot reference class names that are not valid Elm record keys.
-
-## Development Roadmap
-
-1.  Support Webpack 2.
-2.  Add robustness, tests.
 
 [css-loader]: https://www.npmjs.com/package/css-loader
 [css-modules]: https://github.com/css-modules/css-modules

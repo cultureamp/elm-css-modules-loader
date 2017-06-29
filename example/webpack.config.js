@@ -1,17 +1,27 @@
 module.exports = {
   entry: './index.js',
   resolve: {
-    root: [require('path').resolve('.')],
+    modules: [__dirname],
   },
   output: {
-    path: '.',
+    path: __dirname,
     filename: 'output.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.elm$/,
-        loaders: ['elm-css-modules-loader?package=user/project', 'elm-webpack'],
+        use: [
+          {
+            loader: 'elm-css-modules-loader',
+            options: {
+              package: 'user/project',
+            },
+          },
+          {
+            loader: 'elm-webpack-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,

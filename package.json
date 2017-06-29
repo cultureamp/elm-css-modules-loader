@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/cultureamp/elm-css-modules-loader",
   "peerDependencies": {
-    "babel-core": "^6.18.2",
-    "webpack": ">=1.14.0 <2.0"
+    "babel-core": ">=6.18.2 <7",
+    "webpack": ">=1.14.0 <4"
   },
   "files": [
     "index.js"
