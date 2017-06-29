@@ -2,6 +2,10 @@
 
 ## 1.1.x
 
+### 1.1.2
+
+👍 Add support for Webpack 2 and 3. Webpack 1 is still supported.
+
 ### 1.1.1
 
 👍 Add note to README warning against use of `noParse` in Webpack config.
