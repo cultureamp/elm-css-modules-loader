@@ -196,9 +196,6 @@ function(module, exports) {
 
 ## Known Limitations
 
-Currently this only works with Webpack 1.x. Webpack 2 support is at the top the
-our to-do list.
-
 You cannot reference class names that are not valid Elm record keys.
 
 [css-loader]: https://www.npmjs.com/package/css-loader
