@@ -8,7 +8,7 @@ const loader = function(source, inputSourceMap) {
   const config = loaderUtils.getOptions(this) || {};
 
   config.module = config['module'] || 'CssModules';
-  config.tagger = config['tagger'] || 'CssModule';
+  config.tagger = config['tagger'] || 'css';
 
   const packageName = config['package'] || 'cultureamp/elm-css-modules-loader';
   const taggerName =

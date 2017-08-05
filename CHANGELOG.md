@@ -1,5 +1,20 @@
 # Release History: elm-css-modules-loader
 
+## 2.0.x
+
+### 2.0.0
+
+✨ **New API!** Use the `CssModules.css` function to reference your stylesheet,
+and get back a set of helper functions for referencing the classes it contains.
+You no longer need to pass the CSS module around. See README.md for examples.
+💔 `CssModules.CssModule` type is no longer exposed.
+💔 `CssModules.class`, `classList` and `toString` functions are no longer
+exposed.
+💔 `tagger` configuration option for Webpack loader should now point to the
+`css` function, not the `CssModule` constructor. The default has been changed
+accordingly, so this should require no change for configurations that use the
+default value.
+
 ## 1.1.x
 
 ### 1.1.2

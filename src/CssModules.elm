@@ -1,34 +1,36 @@
-module CssModules exposing (..)
+module CssModules exposing (css, Helpers)
 
 {-| This library lets you reference classes defined in CSS modules in your Elm
 views, and then have the actual class names injected into your Elm modules by
 Webpack at build time.
 
-# Definition
-@docs CssModule
-
-# Using Module Classes
-@docs class, classList, toString
-
+@docs css
+@docs Helpers
 -}
 
 import Html
 import Html.Attributes
 
 
-{-| Declare a CSS module that you wish to use in your Elm application.
+{-| Use a CSS module in your Elm application.
 
-    classes = CssModule "./styles.css"
+    { class, classList, toString } = css "./styles.css"
         { someClass = ""
         , anotherClass = ""
         }
 
-The Webpack loader recognises this constructor in the JavaScript code generated
-by the Elm compiler. **The CSS filename must be a literal string.**
+    view =
+        div [ class .someClass ]
 
-The CSS file path is relative to either 1) a Webpack module root directory, or
-2) the JavaScript file in which your top-level Elm module is referenced (in
-which case the path should begin with with `./`).
+This function returns a record, containing functions for accessing the CSS
+module’s class names. See [`Helpers`](#Helpers) for a description of these
+functions.
+
+The CSS filename’s path is relative to either 1) a Webpack module root
+directory, or 2) the JavaScript file in which your top-level Elm module is
+referenced (in which case the path should begin with with `./`).
+
+**Important:** The CSS filename must be a literal string.
 
 Each of the classes in the list may be set to any string, but it’s probably
 easiest just to leave them as empty strings, since these will be replaced with
@@ -39,6 +41,44 @@ module, it will receive a value of `undefined` at runtime, which is likely to
 result in `class="undefined"`.
 
 -}
+css : String -> classes -> Helpers classes msg
+css stylesheet classes =
+    let
+        cssModule =
+            CssModule stylesheet classes
+    in
+        { class = class cssModule
+        , classList = classList cssModule
+        , toString = toString cssModule
+        }
+
+
+{-| A set of functions for accessing the class names in a CSS module.
+
+`class` and `classList` are drop-in replacements for their counterparts in
+`Html.Attributes`, except they take a record accessor to specify a class name
+from your CSS module (e.g. `.someClass`).
+
+    view =
+        div
+            [ classList
+                [ (.someClass, True)
+                , (.anotherClass, False)
+                ]
+            ]
+
+`toString` lets you obtain the raw `String` for a given class name, which you
+might need if you're mixing CSS Module classes together with plain string class
+names.
+
+-}
+type alias Helpers classes msg =
+    { class : (classes -> String) -> Html.Attribute msg
+    , classList : List ( classes -> String, Bool ) -> Html.Attribute msg
+    , toString : (classes -> String) -> String
+    }
+
+
 type CssModule classes
     = CssModule String classes
 
@@ -49,11 +89,11 @@ type CssModule classes
         classes = CssModule "./styles.css"
             { someClass = "" }
     in
-        Html.div [ class .someClass classes ]
+        Html.div [ class classes .someClass ]
 
 -}
-class : (classes -> String) -> CssModule classes -> Html.Attribute msg
-class accessor (CssModule _ classes) =
+class : CssModule classes -> (classes -> String) -> Html.Attribute msg
+class (CssModule _ classes) accessor =
     Html.Attributes.class (accessor classes)
 
 
@@ -67,15 +107,15 @@ class accessor (CssModule _ classes) =
     in
         Html.div
             [ classList
+                classes
                 [ (.message, True)
                 , (.important, message.isImportant)
                 ]
-                classes
             ]
 
 -}
-classList : List ( classes -> String, Bool ) -> CssModule classes -> Html.Attribute msg
-classList list (CssModule _ classes) =
+classList : CssModule classes -> List ( classes -> String, Bool ) -> Html.Attribute msg
+classList (CssModule _ classes) list =
     Html.Attributes.classList <|
         List.map (Tuple.mapFirst (\accessor -> accessor classes)) list
 
@@ -86,9 +126,9 @@ classList list (CssModule _ classes) =
         classes = CssModule "./styles.css"
             { someClass = "" }
     in
-        toString .someClass classes
+        toString classes .someClass
 
 -}
-toString : (classes -> String) -> CssModule classes -> String
-toString accessor (CssModule _ classes) =
+toString : CssModule classes -> (classes -> String) -> String
+toString (CssModule _ classes) accessor =
     accessor classes

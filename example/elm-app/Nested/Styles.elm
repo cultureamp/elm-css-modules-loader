@@ -1,8 +1,8 @@
 module Nested.Styles exposing (..)
 
-import CssModules exposing (CssModule(..))
+import CssModules exposing (css)
 
 
-classes =
-    CssModule "./Nested/Nested.css"
+{ class } =
+    css "./Nested/Nested.css"
         { nested = "" }

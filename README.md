@@ -25,33 +25,29 @@ In any Elm module, reference this stylesheet and the classes you want to use in
 it:
 
 ```elm
-module Styles exposing (..)
+module Main exposing (..)
 
-import CssModules exposing (CssModule(..))
+import CssModules exposing (css)
 
 
-classes =
-    CssModule "./stylesheet.css" -- relative to main Elm source directory
+{ class, classList, id } =
+    css "./stylesheet.css" -- relative to main Elm source directory
         { something = "" -- strings will be populated by Webpack at build time!
         , anotherThing = ""
         }
 ```
 
-Then use the included `class` function to use the class names in your view:
+Then use the returned functions to use the class names in your view:
 
 ```elm
-module Main exposing (..)
-
-import CssModules exposing (class)
-import Styles exposing (classes)
-
-
 view : Html Msg
 view =
     div
-        [ class .something classes ]
+        [ class .something ]
         [ text "this is a div"]
 ```
+
+**Note:** the `.something` syntax may be confusing at first. This is just standard Elm syntax for a function that reaches into a record and returns the value of the `something` key. Because the Elm compiler will only let you reference class names that exist in your CSS Module declaration, you get a bit of type safety to guard against typing mistakes.
 
 ## Why does this exist?
 
@@ -128,27 +124,25 @@ own development, you’ll need to specify the full package name that you have
 released it under with this option.
 
 `module` – (default: `CssModules`) The name of the Elm module in which the
-`CssModule` type is defined.
+`tagger` function is defined.
 
-`tagger` – (defaut: `CssModule`) The name of the Elm constructor function that
-is used to declare CssModules in your code.
+`tagger` – (default: `css`) The name of the Elm factory function that is used
+to declare CssModules in your code.
 
-**Note:** Don't set `noParse` on .elm files. Otherwise, `require`s won't
-be processed.
+**Note:** Don't set `noParse` on .elm files. Otherwise, the JavaScript `require`s that this loader adds to your compiled Elm modules won't be processed by Webpack.
 
 ### Elm Package
 
 Install the `cultureamp/elm-css-modules-loader` package in your Elm project,
-then use the features provided: the `CssModule` constructor (for referencing
-CSS modules), and the `class` and `classList` HTML attribute functions.
+then use the `CssModule` constructor for referencing CSS modules.
 
 ## Under the hood
 
 Let’s walk through what happens when this Elm code is processed by Webpack:
 
 ```elm
-classes =
-    CssModule "./stylesheet.css"
+{ class } =
+    css "./stylesheet.css"
         { something = ""
         , anotherThing = ""
         }
@@ -157,23 +151,24 @@ classes =
 This will be compiled to JavaScript by elm-webpack-loader:
 
 ```js
-var _user$project$Styles$classes = A2(
-  _cultureamp$elm_css_modules_loader$CssModules$CssModule,
+var _user$project$Main$_p0 = A2(
+  _cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
-  {something: '', anotherThing: ''});
+  { something: '', anotherThing: '' });
+var _user$project$Main$class = _user$project$Main$_p0.$class;
 ```
 
-elm-css-modules-loader turns this into:
+elm-css-modules-loader replaces the hard-coded JSON object with a `require` of your stylesheet:
 
 ```js
-var _user$project$Styles$classes = A2(
-  _cultureamp$elm_css_modules_loader$CssModules$CssModule,
+var _user$project$Main$_p0 = A2(
+  _cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
   require('./stylesheet.css'));
+var _user$project$Main$class = _user$project$Main$_p0.$class;
 ```
 
-webpack parses this `require` call, determines it to be a css-loader module,
-resulting in:
+webpack parses this `require` call, processes the stylesheet with css-loader, and replaces the `require` with a reference to the CSS module:
 
 ```js
 var _user$project$Styles$classes = A2(
@@ -182,7 +177,7 @@ var _user$project$Styles$classes = A2(
   __webpack_require__(42));
 ```
 
-The module loaded by `__webpack_require__(42)` will look like:
+The CSS module loaded by `__webpack_require__(42)` contains the actual class names that your Elm app will now consume:
 
 ```js
 42:
@@ -196,10 +191,17 @@ function(module, exports) {
 
 ## Known Limitations
 
-Currently this only works with Webpack 1.x. Webpack 2 support is at the top the
-our to-do list.
+You cannot reference class names that are not valid Elm record keys. We work around this using CSS Modules to define an Elm-friendly class name that `composes` the incompatible class.
 
-You cannot reference class names that are not valid Elm record keys.
+```css
+.Nope {
+  visibility: hidden;
+}
+
+.nope {
+  composes: Nope;
+}
+```
 
 [css-loader]: https://www.npmjs.com/package/css-loader
 [css-modules]: https://github.com/css-modules/css-modules
