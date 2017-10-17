@@ -1,5 +1,20 @@
 const loaderUtils = require('loader-utils');
 
+function regexpForFunctionCall(fnName, args) {
+  const optionalWhitespace = '\\s*';
+  const argumentParts = [];
+  for (let i = 0; i < args.length; i++) {
+    argumentParts.push(optionalWhitespace);
+    argumentParts.push(args[i]);
+    if (i < (args.length - 1)) {
+      argumentParts.push(',');
+    }
+    argumentParts.push(optionalWhitespace);
+  }
+  let parts = [fnName, '\\(', ...argumentParts, '\\)'];
+  return new RegExp(parts.join(''), 'g');
+}
+
 const loader = function(source, inputSourceMap) {
   if (this.cacheable) this.cacheable();
 
@@ -16,34 +31,13 @@ const loader = function(source, inputSourceMap) {
         config.tagger,
       ].join('$'),
     escapedTaggerName = taggerName.replace(/\$/g, '\\$'),
-    a2 = 'A2',
-    optionalWhitespace = '\\s*',
-    moduleNameCapture = '([a-z-./]+)',
-    expectedClassRules = "{[a-z0-9:, ']*}";
+    moduleNameCapture = "'([a-zA-Z-./]+)'",
+    expectedClassRules = "{[a-zA-Z0-9:, ']*}";
 
-  const regexp = new RegExp(
-    [
-      'A2\\(',
-      optionalWhitespace,
-      escapedTaggerName,
-      ',',
-      optionalWhitespace,
-      "'",
-      moduleNameCapture,
-      "',",
-      optionalWhitespace,
-      expectedClassRules,
-      optionalWhitespace,
-      '\\);',
-    ].join(''),
-    'gi'
-  );
+  const regexp = regexpForFunctionCall('A2', [escapedTaggerName, moduleNameCapture, expectedClassRules]);
 
-  const transformedSource = source.replace(
-    regexp,
-    'A2(' + taggerName + ", '$1', require('$1'));"
-  );
-  return transformedSource;
+  source = source.replace(regexp,'A2(' + taggerName + ", '$1', require('$1'));");
+  return source;
 };
 
 module.exports = loader;
