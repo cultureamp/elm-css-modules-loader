@@ -6,7 +6,7 @@ function regexpForFunctionCall(fnName, args) {
   for (let i = 0; i < args.length; i++) {
     argumentParts.push(optionalWhitespace);
     argumentParts.push(args[i]);
-    if (i < (args.length - 1)) {
+    if (i < args.length - 1) {
       argumentParts.push(',');
     }
     argumentParts.push(optionalWhitespace);
@@ -34,9 +34,16 @@ const loader = function(source, inputSourceMap) {
     moduleNameCapture = "'([a-zA-Z-./]+)'",
     expectedClassRules = "{[a-zA-Z0-9:, ']*}";
 
-  const regexp = regexpForFunctionCall('A2', [escapedTaggerName, moduleNameCapture, expectedClassRules]);
+  const regexp = regexpForFunctionCall('A2', [
+    escapedTaggerName,
+    moduleNameCapture,
+    expectedClassRules,
+  ]);
 
-  source = source.replace(regexp,'A2(' + taggerName + ", '$1', require('$1'));");
+  source = source.replace(
+    regexp,
+    'A2(' + taggerName + ", '$1', require('$1'));"
+  );
   return source;
 };
 
