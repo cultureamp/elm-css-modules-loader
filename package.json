@@ -27,7 +27,6 @@
     "index.js"
   ],
   "dependencies": {
-    "babel-generator": "^6.18.2",
     "loader-utils": "^1.1.0"
   },
   "prettier": {
