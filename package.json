@@ -1,6 +1,6 @@
 {
   "name": "elm-css-modules-loader",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "webpack loader for using CSS modules in Elm code",
   "main": "index.js",
   "repository": {
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/cultureamp/elm-css-modules-loader",
   "peerDependencies": {
-    "babel-core": ">=6.18.2 <7",
     "webpack": ">=1.14.0 <4"
   },
   "files": [

@@ -2,6 +2,13 @@
 
 ## 2.0.x
 
+### 2.0.1
+
+👍 Performance improvement: no longer use Babel to tranform source code, rather
+use a simple regex. This offers a significant speed improvement. On the example
+project it reduces build time from ~2000ms to 900ms. On larger projects we've
+seen improvements of 5s on the initial build, and 2s on dev-server rebuilds.
+
 ### 2.0.0
 
 ✨ **New API!** Use the `CssModules.css` function to reference your stylesheet,
