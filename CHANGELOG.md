@@ -2,6 +2,11 @@
 
 ## 2.0.x
 
+### 2.0.2
+
+🐛 Bug fix: in 2.0.1 CSS filenames that had an underscore in them were silently
+skipped. This is now fixed.
+
 ### 2.0.1
 
 👍 Performance improvement: no longer use Babel to tranform source code, rather
