@@ -4,10 +4,11 @@ node_js: lts/*
 cache:
   yarn: true
 before_script:
+- yarn global add elm
 - yarn
 - yarn list
 - (cd example && yarn)
-- (cd example && elm-package install --yes)
+- (cd example && ~/.yarn/bin/elm-package install --yes)
 script:
 - (cd example && yarn webpack -p --verbose)
 after_success:
