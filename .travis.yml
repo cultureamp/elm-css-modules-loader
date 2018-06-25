@@ -1,0 +1,15 @@
+language: node_js
+os: linux
+node_js: lts/*
+cache:
+  yarn: true
+before_script:
+- yarn
+- yarn list
+- cd example && yarn
+- cd example && elm-package install
+script:
+- cd example && yarn webpack
+after_success:
+- yarn global add travis-deploy-once
+- travis-deploy-once "yarn semantic-release"
