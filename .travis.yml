@@ -6,10 +6,10 @@ cache:
 before_script:
 - yarn
 - yarn list
-- cd example && yarn
-- cd example && elm-package install
+- (cd example && yarn)
+- (cd example && elm-package install --yes)
 script:
-- cd example && yarn webpack
+- (cd example && yarn webpack)
 after_success:
 - yarn global add travis-deploy-once
 - travis-deploy-once "yarn semantic-release"
