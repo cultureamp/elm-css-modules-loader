@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cultureamp/elm-css-modules-loader.git"
+    "url": "https://github.com/cultureamp/elm-css-modules-loader.git"
   },
   "keywords": [
     "webpack",
