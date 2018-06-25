@@ -9,7 +9,7 @@ before_script:
 - (cd example && yarn)
 - (cd example && elm-package install --yes)
 script:
-- (cd example && yarn webpack)
+- (cd example && yarn webpack -p --verbose)
 after_success:
 - yarn global add travis-deploy-once
 - travis-deploy-once "yarn semantic-release"
