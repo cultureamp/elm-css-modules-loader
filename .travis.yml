@@ -1,16 +1,16 @@
 language: node_js
 os: linux
 node_js: lts/*
+sudo: required
+services:
+- docker
 cache:
   yarn: true
 before_script:
-- yarn global add elm
 - yarn
 - yarn list
-- (cd example && yarn)
-- (cd example && ~/.yarn/bin/elm-package install --yes)
 script:
-- (cd example && yarn webpack -p --verbose)
+- docker build .
 after_success:
 - yarn global add travis-deploy-once
 - travis-deploy-once "yarn semantic-release"
