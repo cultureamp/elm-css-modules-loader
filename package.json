@@ -61,7 +61,41 @@
         "BREAKING",
         "💔"
       ]
-    }
+    },
+    "verifyConditions": [
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ],
+    "analyzeCommits": [
+      "@semantic-release/commit-analyzer",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "node elmReleaseType.js"
+      }
+    ],
+    "prepare": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "node prepareElmRelease.js"
+      },
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "elm-package.json"
+        ]
+      }
+    ],
+    "publish": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "node tagElmRelease.js"
+      },
+      "@semantic-release/github"
+    ]
   },
   "config": {
     "commitizen": {
@@ -78,6 +112,8 @@
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
+    "@semantic-release/exec": "^2.2.4",
+    "@semantic-release/git": "^5.0.0",
     "commitizen": "^2.10.1",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^1.0.0-rc.9",
