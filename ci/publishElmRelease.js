@@ -19,7 +19,12 @@ async function tagElmRelease(config, context) {
 
   exec(`elm-package publish`);
 
-  return true;
+  return {
+    name: 'Elm release',
+    url:
+      'http://package.elm-lang.org/packages/cultureamp/elm-css-modules-loader/' +
+      elmPackageJson.version,
+  };
 }
 
 module.exports = tagElmRelease;
