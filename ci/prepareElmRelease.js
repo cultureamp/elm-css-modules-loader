@@ -6,11 +6,11 @@ const execSync = require('child_process').execSync;
 async function prepareElmRelease(config, context) {
   function exec(command) {
     context.logger.log(`Running: ${command}`);
-    execSync(command);
+    execSync(command, { shell: '/bin/bash' });
   }
 
   exec(`yarn elm-package diff`);
-  exec(`yarn elm-package bump`);
+  exec(`yes | yarn elm-package bump`);
 }
 
 module.exports = prepareElmRelease;
