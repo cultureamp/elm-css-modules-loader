@@ -1,5 +1,4 @@
-const fs = require('fs');
-const process = require('process');
+const execSync = require('child_process').execSync;
 
 /**
  A semantic release "prepare" plugin to update elm-package.json
