@@ -1,0 +1,16 @@
+language: node_js
+os: linux
+node_js: lts/*
+sudo: required
+services:
+- docker
+cache:
+  yarn: true
+before_script:
+- yarn
+- yarn list
+script:
+- docker build .
+after_success:
+- yarn global add travis-deploy-once
+- travis-deploy-once "yarn semantic-release"
