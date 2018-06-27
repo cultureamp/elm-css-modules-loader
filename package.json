@@ -46,7 +46,6 @@
   },
   "release": {
     "preset": "angular",
-    "tagFormat": "${version}",
     "parserOpts": {
       "noteKeywords": [
         "BREAKING CHANGE",
@@ -59,9 +58,6 @@
       "@semantic-release/npm",
       "@semantic-release/github",
       "@semantic-release/git"
-    ],
-    "verifyRelease": [
-      "./ci/verifyElmReleaseType.js"
     ],
     "prepare": [
       "@semantic-release/npm",
