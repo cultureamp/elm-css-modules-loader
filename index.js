@@ -32,7 +32,7 @@ const loader = function(source, inputSourceMap) {
       ].join('$'),
     escapedTaggerName = taggerName.replace(/\$/g, '\\$'),
     moduleNameCapture = "'([a-zA-Z-_./]+)'",
-    expectedClassRules = "{[a-zA-Z0-9:, ']*}";
+    expectedClassRules = "{[a-zA-Z0-9:$, ']*}";
 
   const regexp = regexpForFunctionCall('A2', [
     escapedTaggerName,
