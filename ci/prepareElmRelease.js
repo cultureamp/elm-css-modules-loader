@@ -10,8 +10,8 @@ async function prepareElmRelease(config, context) {
     execSync(command);
   }
 
-  execCommand(`yarn elm-package diff`);
-  execCommand(`yarn elm-package bump`);
+  exec(`yarn elm-package diff`);
+  exec(`yarn elm-package bump`);
 }
 
 module.exports = prepareElmRelease;
