@@ -1,3 +1,4 @@
+const fs = require('fs');
 const execSync = require('child_process').execSync;
 const { tag, push } = require('semantic-release/lib/git');
 
