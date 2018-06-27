@@ -154,7 +154,8 @@ This will be compiled to JavaScript by elm-webpack-loader:
 var _user$project$Main$_p0 = A2(
   _cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
-  { something: '', anotherThing: '' });
+  { something: '', anotherThing: '' }
+);
 var _user$project$Main$class = _user$project$Main$_p0.$class;
 ```
 
@@ -164,7 +165,8 @@ elm-css-modules-loader replaces the hard-coded JSON object with a `require` of y
 var _user$project$Main$_p0 = A2(
   _cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
-  require('./stylesheet.css'));
+  require('./stylesheet.css')
+);
 var _user$project$Main$class = _user$project$Main$_p0.$class;
 ```
 
@@ -174,7 +176,8 @@ webpack parses this `require` call, processes the stylesheet with css-loader, an
 var _user$project$Styles$classes = A2(
   _cultureamp$elm_css_modules_loader$CssModules$CssModule,
   './stylesheet.css',
-  __webpack_require__(42));
+  __webpack_require__(42)
+);
 ```
 
 The CSS module loaded by `__webpack_require__(42)` contains the actual class names that your Elm app will now consume:
@@ -211,3 +214,12 @@ You cannot reference class names that are not valid Elm record keys. We work aro
 [elm-webpack-loader]: https://www.npmjs.com/package/elm-webpack-loader
 [react]: https://facebook.github.io/react/
 [webpack]: https://webpack.js.org
+
+## Changelog
+
+Our release history is tracked on the [Github Releases page](https://github.com/cultureamp/elm-css-modules-loader/releases).
+
+Note that the NPM package and the Elm package will have different version numbers, as changes to the Elm API may happen indepently of changes to the NPM API, and Elm does not allow you to bump the version number without changes to the Elm API. When viewing the releases page, NPM releases are tagged with a "v" - `v2.1.0`. While Elm releases are tagged with no leading "v" - `2.0.3`.
+
+For release history prior to 2.0.2, you can view our [old CHANGELOG](https://github.com/cultureamp/elm-css-modules-loader/blob/6afcae3f61439f9a0f05cb84bb6a1aea2f1acd81/CHANGELOG.md)
+.
