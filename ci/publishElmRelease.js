@@ -1,7 +1,7 @@
 const execSync = require('child_process').execSync;
 
 /**
- A semantic release "publish" plugin to create git tags and publish using elm-package
+ A semantic release "publish" plugin to trigger `elm-package publish` after tags are created.
  */
 async function tagElmRelease(config, context) {
   function exec(command) {
@@ -10,8 +10,6 @@ async function tagElmRelease(config, context) {
   }
 
   const newVersion = context.nextRelease.version;
-  exec(`git tag -a ${newVersion} -m "elm-package release ${newVersion}"`);
-  exec(`git push --tags`);
   exec(`elm-package publish`);
 }
 
