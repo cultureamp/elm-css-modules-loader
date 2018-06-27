@@ -24,7 +24,7 @@ async function verifyElmReleaseType(config, context) {
 }
 
 function getElmDiffType() {
-  const diff = execSync(`elm-package diff`).toString();
+  const diff = execSync(`yarn elm-package diff`).toString();
   const searchPattern = /This is a (MAJOR|MINOR|PATCH) change./;
   const searchResult = searchPattern.exec(diff);
   if (searchResult) {
