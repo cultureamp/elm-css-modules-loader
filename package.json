@@ -25,11 +25,6 @@
   "scripts": {
     "commit": "git-cz"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e"
-    }
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -102,7 +97,6 @@
     "@semantic-release/git": "^5.0.0",
     "commitizen": "^2.10.1",
     "cz-conventional-changelog": "^2.1.0",
-    "husky": "^1.0.0-rc.9",
     "semantic-release": "^15.6.0"
   }
 }
