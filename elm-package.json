@@ -1,5 +1,5 @@
 {
-  "version": "2.0.5",
+  "version": "2.1.0",
   "summary": "Use Webpack-powered CSS Modules inside your Elm views",
   "repository": "https://github.com/cultureamp/elm-css-modules-loader.git",
   "license": "BSD3",
