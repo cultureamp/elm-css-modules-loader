@@ -3,8 +3,8 @@ module Styles exposing (..)
 import CssModules exposing (css)
 
 
-{ class } =
+styles =
     css "./Main.css"
-        { something = ""
-        , somethingElse = ""
+        { something = "something"
+        , somethingElse = "somethingElse"
         }

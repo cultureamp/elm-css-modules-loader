@@ -15,11 +15,14 @@ module.exports = {
           {
             loader: 'elm-css-modules-loader',
             options: {
-              package: 'user/project',
+              package: 'author/project',
             },
           },
           {
             loader: 'elm-webpack-loader',
+            options: {
+              optimize: true
+            }
           },
         ],
       },
