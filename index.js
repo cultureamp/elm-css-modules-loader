@@ -1,6 +1,6 @@
 const loaderUtils = require('loader-utils');
-const babel = require('babel-core');
-const { default: generate } = require('babel-generator');
+const babel = require('@babel/core');
+const elmCssModulesPlugin = require('elm-css-modules-plugin');
 
 const loader = function(source, inputSourceMap) {
   this.cacheable && this.cacheable(); // for Webpack 1.x compatibility
@@ -43,7 +43,9 @@ const loader = function(source, inputSourceMap) {
 
 function transform(source, loaderContext, transformerOptions, babelOptions) {
   babelOptions.plugins = [
-    cssModulesTransformer(loaderContext, transformerOptions),
+    elmCssModulesPlugin.withOptions({
+      taggerName: transformerOptions.taggerName,
+    }),
   ];
 
   const { code, map } = babel.transform(source, babelOptions);
@@ -53,51 +55,6 @@ function transform(source, loaderContext, transformerOptions, babelOptions) {
   }
 
   return { code, map };
-}
-
-function cssModulesTransformer(loaderContext, options) {
-  return function plugin({ types: t }) {
-    return {
-      visitor: {
-        CallExpression: callExpressionVisitor(t, loaderContext, options),
-      },
-    };
-  };
-}
-
-const REPLACED_NODE = Symbol('elmCssModulesLoaderReplaced');
-
-function callExpressionVisitor(t, loaderContext, options) {
-  return function visitor(path) {
-    // avoid infinite recursion
-    if (path.node[REPLACED_NODE]) {
-      return;
-    }
-
-    // look for:
-    //
-    //     A2(<taggerName>, ...);
-    if (
-      !(t.isIdentifier(path.node.callee) &&
-        path.node.callee.name === 'A2' &&
-        t.isIdentifier(path.node.arguments[0]) &&
-        path.node.arguments[0].name === options.taggerName)
-    )
-      return;
-
-    // replace hard-coded CSS classes with require("stylesheet.css")
-    const replacement = t.callExpression(
-      path.node.callee, // A2 (leave alone)
-      [
-        path.node.arguments[0], // taggerName (leave alone)
-        path.node.arguments[1], // e.g. "stylesheet.css" (leave alone)
-        t.callExpression(t.Identifier('require'), [path.node.arguments[1]]),
-      ]
-    );
-    replacement[REPLACED_NODE] = true;
-
-    path.replaceWith(replacement);
-  };
 }
 
 module.exports = loader;
