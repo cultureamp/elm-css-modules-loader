@@ -11,13 +11,11 @@ const loader = function(source, inputSourceMap) {
   config.tagger = config['tagger'] || 'css';
 
   const packageName = config['package'] || 'cultureamp/elm-css-modules-loader';
-  const taggerName =
-    '_' +
-    [
-      packageName.replace(/-/g, '_').replace(/\//g, '$'),
-      config.module.replace(/\./g, '_'),
-      config.tagger,
-    ].join('$');
+  const taggerName = [
+    packageName.replace(/-/g, '_').replace(/\//g, '$'),
+    config.module.replace(/\./g, '_'),
+    config.tagger,
+  ].join('$');
 
   const transformerOptions = {
     taggerName: taggerName,
