@@ -1,4 +1,7 @@
-module CssModules exposing (css, Helpers)
+module CssModules exposing
+    ( css
+    , Helpers
+    )
 
 {-| This library lets you reference classes defined in CSS modules in your Elm
 views, and then have the actual class names injected into your Elm modules by
@@ -6,6 +9,7 @@ Webpack at build time.
 
 @docs css
 @docs Helpers
+
 -}
 
 import Html
@@ -14,10 +18,11 @@ import Html.Attributes
 
 {-| Use a CSS module in your Elm application.
 
-    { class, classList, toString } = css "./styles.css"
-        { someClass = ""
-        , anotherClass = ""
-        }
+    { class, classList, toString } =
+        css "./styles.css"
+            { someClass = ""
+            , anotherClass = ""
+            }
 
     view =
         div [ class .someClass ]
@@ -47,10 +52,10 @@ css stylesheet classes =
         cssModule =
             CssModule stylesheet classes
     in
-        { class = class cssModule
-        , classList = classList cssModule
-        , toString = toString cssModule
-        }
+    { class = class cssModule
+    , classList = classList cssModule
+    , toString = toString cssModule
+    }
 
 
 {-| A set of functions for accessing the class names in a CSS module.
@@ -62,8 +67,8 @@ from your CSS module (e.g. `.someClass`).
     view =
         div
             [ classList
-                [ (.someClass, True)
-                , (.anotherClass, False)
+                [ ( .someClass, True )
+                , ( .anotherClass, False )
                 ]
             ]
 
@@ -86,10 +91,11 @@ type CssModule classes
 {-| Use a CSS module class as an HTML class attribute’s value.
 
     let
-        classes = CssModule "./styles.css"
-            { someClass = "" }
+        classes =
+            CssModule "./styles.css"
+                { someClass = "" }
     in
-        Html.div [ class classes .someClass ]
+    Html.div [ class classes .someClass ]
 
 -}
 class : CssModule classes -> (classes -> String) -> Html.Attribute msg
@@ -100,18 +106,19 @@ class (CssModule _ classes) accessor =
 {-| Combine a list of CSS module classes as an HTML class attribute’s value.
 
     let
-        classes = CssModule "./styles.css"
-            { message = ""
-            , important = ""
-            }
+        classes =
+            CssModule "./styles.css"
+                { message = ""
+                , important = ""
+                }
     in
-        Html.div
-            [ classList
-                classes
-                [ (.message, True)
-                , (.important, message.isImportant)
-                ]
+    Html.div
+        [ classList
+            classes
+            [ ( .message, True )
+            , ( .important, message.isImportant )
             ]
+        ]
 
 -}
 classList : CssModule classes -> List ( classes -> String, Bool ) -> Html.Attribute msg
@@ -123,10 +130,11 @@ classList (CssModule _ classes) list =
 {-| Access the raw `String` for a CSS module class.
 
     let
-        classes = CssModule "./styles.css"
-            { someClass = "" }
+        classes =
+            CssModule "./styles.css"
+                { someClass = "" }
     in
-        toString classes .someClass
+    toString classes .someClass
 
 -}
 toString : CssModule classes -> (classes -> String) -> String
