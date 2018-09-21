@@ -18,14 +18,14 @@ import Html.Attributes
 
 {-| Use a CSS module in your Elm application.
 
-    { class, classList, toString } =
+    styles =
         css "./styles.css"
-            { someClass = ""
-            , anotherClass = ""
+            { someClass = "someClass"
+            , anotherClass = "anotherClass"
             }
 
     view =
-        div [ class .someClass ]
+        div [ styles.class .someClass ]
 
 This function returns a record, containing functions for accessing the CSS
 module’s class names. See [`Helpers`](#Helpers) for a description of these
@@ -37,9 +37,9 @@ referenced (in which case the path should begin with with `./`).
 
 **Important:** The CSS filename must be a literal string.
 
-Each of the classes in the list may be set to any string, but it’s probably
-easiest just to leave them as empty strings, since these will be replaced with
-the actual class names by the Webpack loader at build time.
+Each of the classes in the list must have the value of the corresponding class
+name, which will be substituted for a require of the CSS module by the Webpack
+loader at build time.
 
 **Warning:** Currently, if you list a class that is not defined in the CSS
 module, it will receive a value of `undefined` at runtime, which is likely to
@@ -93,7 +93,7 @@ type CssModule classes
     let
         classes =
             CssModule "./styles.css"
-                { someClass = "" }
+                { someClass = "someClass" }
     in
     Html.div [ class classes .someClass ]
 
@@ -108,8 +108,8 @@ class (CssModule _ classes) accessor =
     let
         classes =
             CssModule "./styles.css"
-                { message = ""
-                , important = ""
+                { message = "message"
+                , important = "important"
                 }
     in
     Html.div
@@ -132,7 +132,7 @@ classList (CssModule _ classes) list =
     let
         classes =
             CssModule "./styles.css"
-                { someClass = "" }
+                { someClass = "someClass" }
     in
     toString classes .someClass
 
