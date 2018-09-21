@@ -66,7 +66,7 @@
         "path": "@semantic-release/git",
         "assets": [
           "package.json",
-          "elm-package.json"
+          "elm.json"
         ]
       }
     ],
