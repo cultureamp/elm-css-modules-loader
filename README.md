@@ -30,10 +30,10 @@ module Main exposing (..)
 import CssModules exposing (css)
 
 
-{ class, classList, id } =
+styles =
     css "./stylesheet.css" -- relative to main Elm source directory
-        { something = "" -- strings will be populated by Webpack at build time!
-        , anotherThing = ""
+        { something = "something" -- string value should match CSS class name 
+        , anotherThing = "anotherThing"
         }
 ```
 
@@ -43,7 +43,7 @@ Then use the returned functions to use the class names in your view:
 view : Html Msg
 view =
     div
-        [ class .something ]
+        [ styles.class .something ]
         [ text "this is a div"]
 ```
 
@@ -141,42 +141,49 @@ then use the `CssModule` constructor for referencing CSS modules.
 Let’s walk through what happens when this Elm code is processed by Webpack:
 
 ```elm
-{ class } =
+styles =
     css "./stylesheet.css"
-        { something = ""
-        , anotherThing = ""
+        { something = "something"
+        , anotherThing = "anotherThing"
         }
 ```
 
 This will be compiled to JavaScript by elm-webpack-loader:
 
 ```js
-var _user$project$Main$_p0 = A2(
-  _cultureamp$elm_css_modules_loader$CssModules$css,
+var user$project$Styles$styles = A2(
+  cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
-  { something: '', anotherThing: '' }
+  {
+    aC: 'something',
+    aD: 'anotherThing'
+  }
 );
-var _user$project$Main$class = _user$project$Main$_p0.$class;
 ```
 
 elm-css-modules-loader replaces the hard-coded JSON object with a `require` of your stylesheet:
 
 ```js
-var _user$project$Main$_p0 = A2(
-  _cultureamp$elm_css_modules_loader$CssModules$css,
+var user$project$Styles$styles = A2(
+  cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
-  require('./stylesheet.css')
+  {
+    aC: require('./stylesheet.css').something,
+    aD: require('./stylesheet.css').anotherThing
+  }
 );
-var _user$project$Main$class = _user$project$Main$_p0.$class;
 ```
 
 webpack parses this `require` call, processes the stylesheet with css-loader, and replaces the `require` with a reference to the CSS module:
 
 ```js
-var _user$project$Styles$classes = A2(
-  _cultureamp$elm_css_modules_loader$CssModules$CssModule,
+var user$project$Styles$styles = A2(
+  cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
-  __webpack_require__(42)
+  {
+    aC: __webpack_require__(42).something,
+    aD: __webpack_require__(42).anotherThing
+  }
 );
 ```
 
@@ -189,20 +196,6 @@ function(module, exports) {
     something: 'something-abc123',
     anotherThing: 'anotherThing-abc123'
   };
-}
-```
-
-## Known Limitations
-
-You cannot reference class names that are not valid Elm record keys. We work around this using CSS Modules to define an Elm-friendly class name that `composes` the incompatible class.
-
-```css
-.Nope {
-  visibility: hidden;
-}
-
-.nope {
-  composes: Nope;
 }
 ```
 

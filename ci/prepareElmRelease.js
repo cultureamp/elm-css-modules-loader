@@ -9,8 +9,8 @@ async function prepareElmRelease(config, context) {
     execSync(command, { shell: '/bin/bash' });
   }
 
-  exec(`yarn elm-package diff`);
-  exec(`yes | yarn elm-package bump`);
+  exec(`yarn elm diff`);
+  exec(`yes | yarn elm bump`);
 }
 
 module.exports = prepareElmRelease;

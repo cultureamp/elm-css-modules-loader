@@ -12,12 +12,12 @@ async function tagElmRelease(config, context) {
     execSync(command);
   }
 
-  const elmPackageJson = JSON.parse(fs.readFileSync('elm-package.json'));
+  const elmPackageJson = JSON.parse(fs.readFileSync('elm.json'));
   await tag(elmPackageJson.version);
   const repositoryUrl = await getGitAuthUrl(config);
   await push(repositoryUrl, config.branch);
 
-  exec(`elm-package publish`);
+  exec(`elm publish`);
 
   return {
     name: 'Elm release',

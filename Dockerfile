@@ -7,5 +7,5 @@ WORKDIR $ROOT/example
 
 RUN rm -rf node_modules elm-stuff
 RUN yarn
-RUN yarn elm-package install --yes
+RUN yarn elm make elm-app/Main.elm
 RUN yarn webpack
