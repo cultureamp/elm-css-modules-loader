@@ -12,5 +12,6 @@ before_script:
 script:
 - docker build .
 after_success:
-- yarn global add travis-deploy-once
-- travis-deploy-once "yarn semantic-release"
+# travis-deploy-once is deprecated in favour of Travis Build Stages
+# - yarn global add travis-deploy-once
+# - travis-deploy-once "yarn semantic-release"
