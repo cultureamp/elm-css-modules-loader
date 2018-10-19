@@ -7,7 +7,7 @@ services:
 cache:
   yarn: true
 before_script:
-- yarn
+- yarn --frozen-lockfile
 - yarn list
 script:
 - docker build .
