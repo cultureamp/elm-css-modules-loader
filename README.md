@@ -168,8 +168,8 @@ var user$project$Styles$styles = A2(
   cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
   {
-    aC: require('./stylesheet.css').something,
-    aD: require('./stylesheet.css').anotherThing
+    aC: require('./stylesheet.css')["something"],
+    aD: require('./stylesheet.css')["anotherThing"]
   }
 );
 ```
@@ -181,8 +181,8 @@ var user$project$Styles$styles = A2(
   cultureamp$elm_css_modules_loader$CssModules$css,
   './stylesheet.css',
   {
-    aC: __webpack_require__(42).something,
-    aD: __webpack_require__(42).anotherThing
+    aC: __webpack_require__(42)["something"],
+    aD: __webpack_require__(42)["anotherThing"]
   }
 );
 ```
