@@ -3,7 +3,7 @@
     "name": "cultureamp/elm-css-modules-loader",
     "summary": "Use Webpack-powered CSS Modules inside your Elm views",
     "license": "BSD-3-Clause",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "exposed-modules": [
         "CssModules"
     ],
