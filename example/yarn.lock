@@ -996,16 +996,16 @@ elliptic@^6.0.0:
     minimalistic-crypto-utils "^1.0.0"
 
 "elm-css-modules-loader@file:..":
-  version "3.0.0"
+  version "3.0.2"
   dependencies:
     "@babel/core" "^7.1.0"
     elm-css-modules-plugin "^0.1.5"
     loader-utils "^1.1.0"
 
 elm-css-modules-plugin@^0.1.5:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/elm-css-modules-plugin/-/elm-css-modules-plugin-0.1.4.tgz#175b0089304e930321ec1786298a3b0b88ca02ad"
-  integrity sha512-H2Kx4nEGxRHCkebHXTgNb9E2IHi2bA0K6VrblOlqDLQX115Fmtt9t1hNWK7E9o5B4ZRS9tP91Lek/R6+Zjvflg==
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/elm-css-modules-plugin/-/elm-css-modules-plugin-0.1.5.tgz#a10dd105454890f4dfd218359289ec8a00dfddfc"
+  integrity sha512-nLMH0x+XUEmfkC0mh9rWQBNSlaIe2w5xdAY8tJTCpCcw7uQsSUky3XmfIzvsD2cohuYQOTefbxYUvvVU6pgvpA==
   dependencies:
     "@babel/core" "^7.0.0"
 
