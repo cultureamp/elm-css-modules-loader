@@ -1397,10 +1397,10 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-elm-css-modules-plugin@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/elm-css-modules-plugin/-/elm-css-modules-plugin-0.1.5.tgz#a10dd105454890f4dfd218359289ec8a00dfddfc"
-  integrity sha512-nLMH0x+XUEmfkC0mh9rWQBNSlaIe2w5xdAY8tJTCpCcw7uQsSUky3XmfIzvsD2cohuYQOTefbxYUvvVU6pgvpA==
+elm-css-modules-plugin@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/elm-css-modules-plugin/-/elm-css-modules-plugin-0.2.0.tgz#b99f21d85dab80fce17e2fa733f60c0e6335ff89"
+  integrity sha512-M8zXZh2ZVHwMG3Gc9tu3zWVOXlni1SonLSNFS8VrkL8KxGMb0dfo2M/YwfWsADnMuHoGN1aLJQHBf68dCc9ssw==
   dependencies:
     "@babel/core" "^7.0.0"
 

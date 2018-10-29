@@ -41,9 +41,7 @@ const loader = function(source, inputSourceMap) {
 
 function transform(source, loaderContext, transformerOptions, babelOptions) {
   babelOptions.plugins = [
-    elmCssModulesPlugin.withOptions({
-      taggerName: transformerOptions.taggerName,
-    }),
+    [elmCssModulesPlugin, { taggerName: transformerOptions.taggerName }],
   ];
 
   const { code, map } = babel.transform(source, babelOptions);
