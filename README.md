@@ -216,3 +216,7 @@ Note that the NPM package and the Elm package will have different version number
 
 For release history prior to 2.0.2, you can view our [old CHANGELOG](https://github.com/cultureamp/elm-css-modules-loader/blob/6afcae3f61439f9a0f05cb84bb6a1aea2f1acd81/CHANGELOG.md)
 .
+
+---
+
+Elm CSS Modules Loader is maintained by the Front End Capability Team at Culture Amp.
