@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: elm-css-modules-loader
+  description: > 
+    A Webpack loader that enables you to reference CSS modules in Elm source files.
+    Hat tip to NoRedInk and its elm-assets-loader, which formed the technical basis for this package.
+  tags:
+    - users-na
+    - camp-foundations
+    - data-none
+  annotations:
+    github.com/project-slug: cultureamp/elm-css-modules-loader
+    github.com/team-slug: cultureamp/front-end-foundations
+spec:
+  type: library
+  owner: front-end-foundations
+  lifecycle: production
