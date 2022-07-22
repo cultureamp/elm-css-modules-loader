@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/cultureamp/elm-css-modules-loader",
   "peerDependencies": {
-    "webpack": ">=1.14.0 <4"
+    "webpack": ">=1.14.0 <5"
   },
   "files": [
     "index.js"
