@@ -97,6 +97,6 @@
     "commitizen": "^2.10.1",
     "cz-conventional-changelog": "^2.1.0",
     "elm": "0.19.1-4",
-    "semantic-release": "^15.6.0"
+    "semantic-release": "^19.0.3"
   }
 }
