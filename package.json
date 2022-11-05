@@ -88,7 +88,7 @@
   "dependencies": {
     "@babel/core": "^7.1.0",
     "elm-css-modules-plugin": "^1.1.0",
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^2.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
