@@ -996,16 +996,16 @@ elliptic@^6.0.0:
     minimalistic-crypto-utils "^1.0.0"
 
 "elm-css-modules-loader@file:..":
-  version "3.0.3"
+  version "3.0.4"
   dependencies:
     "@babel/core" "^7.1.0"
-    elm-css-modules-plugin "^0.2.0"
+    elm-css-modules-plugin "^1.1.0"
     loader-utils "^1.1.0"
 
-elm-css-modules-plugin@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/elm-css-modules-plugin/-/elm-css-modules-plugin-0.2.0.tgz#b99f21d85dab80fce17e2fa733f60c0e6335ff89"
-  integrity sha512-M8zXZh2ZVHwMG3Gc9tu3zWVOXlni1SonLSNFS8VrkL8KxGMb0dfo2M/YwfWsADnMuHoGN1aLJQHBf68dCc9ssw==
+elm-css-modules-plugin@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/elm-css-modules-plugin/-/elm-css-modules-plugin-1.1.0.tgz#533f894c720d8d5e836cd22ecad0cf3fec3ff370"
+  integrity sha512-wHRWhapHMgcSZkCLF3VHuuiZfQPJ2TX4Wl+PJ8yuyMDtrz4/mVdx6Q71P+EE8XcvtbqnnBuTXgly+tJBVx5FtA==
   dependencies:
     "@babel/core" "^7.0.0"
 
@@ -1560,9 +1560,9 @@ inherits@2.0.1:
   integrity sha1-sX0I0ya0Qj5Wjv9xn5GwscvfafE=
 
 ini@~1.3.0:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
-  integrity sha1-BTfLedr1m1mhpRff9wbIbsA5Fi4=
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
+  integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
 interpret@^1.0.0:
   version "1.0.3"
