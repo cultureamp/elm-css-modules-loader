@@ -86,7 +86,7 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@babel/core": "^7.1.0",
+    "@babel/core": "^7.26.10",
     "elm-css-modules-plugin": "^1.1.0",
     "loader-utils": "^1.1.0"
   },
